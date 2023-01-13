@@ -11,4 +11,14 @@ module.exports = {
       res.status(500).json(error);
     }
   },
+  async getUserById(req, res){
+    try {
+        const result = await User.findOne({_id: req.params.id})
+        .select('-__v')
+
+        res.json(result)
+    } catch (error) {
+        
+    }
+  }
 };
