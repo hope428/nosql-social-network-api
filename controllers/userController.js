@@ -11,6 +11,15 @@ module.exports = {
       res.status(500).json(error);
     }
   },
+  async createUser(req, res){
+    try {
+      const newUser = await User.create(req.body)
+      res.status(201).json(newUser)
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  },
+
   async getUserById(req, res){
     try {
         const result = await User.findOne({_id: req.params.id})
