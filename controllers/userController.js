@@ -42,4 +42,12 @@ module.exports = {
       res.status(500).json(error);
     }
   },
+  async deleteUser(req, res){
+    try {
+      const deletedUser = await User.findOneAndDelete({_id: req.params.id})
+      res.status(200).json(deletedUser);
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  }
 };
