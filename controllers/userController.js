@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const { update } = require("../models/User");
 
 module.exports = {
   //get all users
@@ -11,23 +12,34 @@ module.exports = {
       res.status(500).json(error);
     }
   },
-  async createUser(req, res){
+  async createUser(req, res) {
     try {
-      const newUser = await User.create(req.body)
-      res.status(201).json(newUser)
+      const newUser = await User.create(req.body);
+      res.status(201).json(newUser);
     } catch (error) {
-      res.status(500).json(error)
+      res.status(500).json(error);
     }
   },
-
-  async getUserById(req, res){
+  async getUserById(req, res) {
     try {
-        const result = await User.findOne({_id: req.params.id})
-        .select('-__v')
+      const result = await User.findOne({ _id: req.params.id }).select("-__v");
 
-        res.json(result)
+      res.status(200).json(result);
     } catch (error) {
-        
+      res.status(500).json(error);
     }
-  }
+  },
+  async updateUser(req, res) {
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: req.body },
+        { runValidators: true, new: true }
+      );
+
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
 };
