@@ -70,10 +70,23 @@ module.exports = {
         { _id: req.params.thoughtid },
         { $addToSet: { reactions: req.body } },
         { new: true }
-      )
-      res.status(200).json(newReaction)
+      );
+      res.status(200).json(newReaction);
     } catch (error) {
-        res.status(500).json(error);
+      res.status(500).json(error);
+    }
+  },
+
+  async removeReaction(req, res) {
+    try {
+      const thought = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtid },
+        { $pull: { reactions: { reactionId: req.params.reactionid } } },
+        {new: true}
+      );
+      res.status(200).json(thought)
+    } catch (error) {
+      res.status(500).json(error);
     }
   },
 };
