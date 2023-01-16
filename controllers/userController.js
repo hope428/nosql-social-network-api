@@ -23,7 +23,7 @@ module.exports = {
   // get specific user by id
   async getUserById(req, res) {
     try {
-      const result = await User.findOne({ _id: req.params.id }).select("-__v");
+      const result = await User.findOne({ _id: req.params.id }).select("-__v").populate(['friends', 'thoughts']);
 
       res.status(200).json(result);
     } catch (error) {

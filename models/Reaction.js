@@ -18,9 +18,11 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (date) =>  date.toISOString().split("T")[1].split(".")[0]
     },
   },
   {
+    timestamps: true,
     toJSON: {
       getters: true,
     },

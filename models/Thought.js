@@ -12,6 +12,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (date) =>  date.toISOString().split("T")[1].split(".")[0]
     },
     username: {
       type: String,
@@ -20,6 +21,7 @@ const thoughtSchema = new Schema(
     reactions: [Reaction],
   },
   {
+    timestamps: true,
     toJSON: {
       virtuals: true,
     },
