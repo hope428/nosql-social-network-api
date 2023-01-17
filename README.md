@@ -16,7 +16,7 @@ npm install
 
 ## Usage 
 
-[Walkthrough Video Here!]()
+[Walkthrough Video Here!](https://drive.google.com/file/d/1mOBE8TEOy4j-YW_MfxKf2e0Y-rQIFIbE/view)
 
 To use this backend, open in your terminal. Start the sever with either
 
